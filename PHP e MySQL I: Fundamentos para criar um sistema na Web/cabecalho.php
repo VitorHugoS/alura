@@ -23,6 +23,7 @@
 			<div>
 			<ul class="nav navbar-nav">
 				<li><a href="produto-formulario.php">Adicionar Produto</a></li>
+				<li><a href="produto-lista.php">Produtos</a></li>
 				<li><a href="sobre.php">Sobre</a></li>
 			</ul>
 		</div>
