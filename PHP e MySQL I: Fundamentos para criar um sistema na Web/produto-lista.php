@@ -1,12 +1,7 @@
 <?php include "cabecalho.php"; ?>
 <?php include "conecta.php"; ?>
-<?php include "banco-produto.php"; ?>
-<?php 
-if(array_key_exists("removido", $_GET) && $_GET["removido"]==true) :
-	?>
-	<p class="alert-success">Produto apagado com sucesso!</p>
-	<?php
-endif
+<?php include "banco-produto.php"; 
+include "logica-usuario.php";
 ?>
 <table class="table table-striped table-bordered">
 <?php 
