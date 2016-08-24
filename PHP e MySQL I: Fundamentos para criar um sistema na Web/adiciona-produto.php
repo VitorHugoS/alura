@@ -3,25 +3,28 @@ include "cabecalho.php";
 include "conecta.php";
 include "banco-produto.php";
 include "logica-usuario.php";
+include "class/Produto.php";
 
 verificaUsuario();
-$nome = $_POST["nome"];
-$preco = $_POST["preco"];
-$descricao = $_POST["descricao"];
-$categoria = $_POST["categoria_id"];
+$produto = new Produto();
+$produto->nome = $_POST["nome"];
+$produto->preco = $_POST["preco"];
+$produto->descricao = $_POST["descricao"];
+$produto->categoria = $_POST["categoria_id"];
 if(array_key_exists("usado", $_POST)):
-	$usado = "true";
+	$produto->usado = "true";
 else:
-	$usado = "false";
+	$produto->usado = "false";
 endif;
-if(insereProduto($conexao, $nome, $preco, $descricao, $categoria, $usado)){
+
+if(insereProduto($produto)){
 ?>
-	<p class="text-success">O produto <?=$nome?>, <?=$preco?> foi adicionado.</p>
+	<p class="text-success">O produto <?=$produto->nome?>, <?=$produto->preco?> foi adicionado.</p>
 <?php
 }else{
 $msg = mysqli_error($conexao);
 ?>
-	<p class="text-danger">O produto <?=$nome?> não foi adicionado: <?=$msg?></p>
+	<p class="text-danger">O produto <?=$produto->nome?> não foi adicionado: <?=$msg?></p>
 <?php
 }
 mysqli_close($conexao);
