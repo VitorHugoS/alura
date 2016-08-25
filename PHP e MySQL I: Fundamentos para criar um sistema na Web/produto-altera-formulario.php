@@ -1,26 +1,26 @@
-<?php include "cabecalho.php";
-include "conecta.php";
-include "banco-categoria.php";
-include "banco-produto.php";
-include "logica-usuario.php";
-
+<?php require_once "cabecalho.php";
+require_once "conecta.php";
+require_once "banco-categoria.php";
+require_once "banco-produto.php";
+require_once "logica-usuario.php";
+require_once "class/Produto.php";
+require_once "class/Categoria.php";
 verificaUsuario();
 $id = $_GET["id"];
 $produto = buscaProduto($conexao, $id);
 $categorias = listaCategorias($conexao);
-$usado = $produto["usado"] ? "checked = 'checked'" : "";
 ?> 
 
 <h1>Alterando produto</h1>
 <form action="altera-produto.php" method="post">
 	<table class="table">
-	<input type="hidden" name="id" value="<?=$produto["id"]?>">
-	<?php include("produto-formulario-base.php"); ?>
+	<input type="hidden" name="id" value="<?=$produto->getId()?>">
+	<?php require_once("produto-formulario-base.php");?>
 	<tr>
 		<td><button class="btn btn-primary" type="submit">Alterar</button></td>
 	</tr>
 	</table>
 </form>
 <?php
-   include "rodape.php";
+   require_once "rodape.php";
 ?>

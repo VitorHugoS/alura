@@ -1,6 +1,6 @@
 <?php
-	include "cabecalho.php";
-	include "logica-usuario.php";
+	require_once "cabecalho.php";
+	require_once "logica-usuario.php";
 	if (usuarioEstaLogado()){ ?>
 		<p class="text-success">Você esta logado como <?=usuarioLogado()?>. <a href="logout.php">Deslogar</a></p>
 	<?php }else{
@@ -24,5 +24,5 @@
 </form>
 <?php
 	}
-	include "rodape.php";
+	require_once "rodape.php";
 ?>

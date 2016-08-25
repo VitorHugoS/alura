@@ -1,5 +1,5 @@
 <?php
-   include "cabecalho.php";
+   require_once "cabecalho.php";
 ?>
 <form action="envia-contato.php" method="post">
 <table class="table">
@@ -19,5 +19,5 @@
 	
 </form>
 <?php
-   include "rodape.php";
+   require_once "rodape.php";
 ?>

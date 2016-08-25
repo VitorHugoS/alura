@@ -1,7 +1,7 @@
-<?php include "cabecalho.php"; ?>
-<?php include "conecta.php"; ?>
-<?php include "banco-produto.php"; 
-include "logica-usuario.php"; 
+<?php require_once "cabecalho.php"; ?>
+<?php require_once "conecta.php"; ?>
+<?php require_once "banco-produto.php"; 
+require_once "logica-usuario.php"; 
 $id = $_POST["id"];
 removeProduto($conexao, $id);
 $_SESSION["success"] = "Produto removido com sucesso.";

@@ -1,7 +1,7 @@
 <?php
-include ("conecta.php");
-include ("banco-usuarios.php");
-include "logica-usuario.php";
+require_once ("conecta.php");
+require_once ("banco-usuarios.php");
+require_once "logica-usuario.php";
 
 $usuario = buscaUsuario($conexao, $_POST["email"], $_POST["senha"]);
 if ($usuario == null):
