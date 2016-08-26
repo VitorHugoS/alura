@@ -5,6 +5,7 @@ require_once "banco-produto.php";
 require_once "class/Produto.php";
 require_once "class/Categoria.php";
 
+$ProdutoDAO = new ProdutoDAO($conexao);
 $categoria = new Categoria();
 $categoria->setId($_POST["categoria_id"]);
 if(array_key_exists("usado", $_POST)):
@@ -15,7 +16,7 @@ endif;
 
 $produto = new Produto($_POST["nome"], $_POST["preco"], $categoria, $usado, $_POST["descricao"]);
 
-if(alteraProduto($conexao, $produto)){
+if($ProdutoDAO->alteraProduto($produto)){
 ?>
 	<p class="text-success">O produto <?=$produto->nome?>, <?=$produto->preco?> foi alterado.</p>
 <?php

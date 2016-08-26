@@ -7,8 +7,11 @@ require_once "class/Produto.php";
 require_once "class/Categoria.php";
 verificaUsuario();
 $id = $_GET["id"];
-$produto = buscaProduto($conexao, $id);
-$categorias = listaCategorias($conexao);
+//$produto = buscaProduto($conexao, $id);
+$ProdutoDAO = new ProdutoDAO($conexao);
+$produto = $ProdutoDAO->buscaProduto($id);
+$categoriaDAO = new CategoriaDAO($conexao);
+$categorias = $categoriaDAO->listaCategorias();
 ?> 
 
 <h1>Alterando produto</h1>

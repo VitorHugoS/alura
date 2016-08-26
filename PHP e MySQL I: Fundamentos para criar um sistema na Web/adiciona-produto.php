@@ -6,7 +6,7 @@ require_once "logica-usuario.php";
 require_once "class/Produto.php";
 require_once "class/Categoria.php";
 verificaUsuario();
-
+$ProdutoDAO = new ProdutoDAO($conexao);
 $categoria = new Categoria();
 $categoria->setId($_POST["categoria_id"]);
 if(array_key_exists("usado", $_POST)):
@@ -17,7 +17,7 @@ endif;
 
 $produto = new Produto($_POST["nome"], $_POST["preco"], $categoria, $usado, $_POST["descricao"]);
 
-if(insereProduto($conexao, $produto)){
+if($ProdutoDAO->insereProduto($produto)){
 ?>
 	<p class="text-success">O produto <?=$produto->getNome()?>, <?=$produto->getPreco()?> foi adicionado.</p>
 <?php

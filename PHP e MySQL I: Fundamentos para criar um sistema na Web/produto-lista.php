@@ -5,8 +5,8 @@ require_once "logica-usuario.php";
 ?>
 <table class="table table-striped table-bordered">
 <?php 
-	$produtos = listaProdutos($conexao);
-	foreach ($produtos as $produto) :
+	$ProdutoDAO = new ProdutoDAO($conexao);
+	foreach ($ProdutoDAO->listaProdutos() as $produto) :
 ?>
 	<tr>
 		<td><?=$produto->getNome()?></td>
