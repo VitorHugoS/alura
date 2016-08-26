@@ -4,14 +4,12 @@
 <?php require_once "conecta.php"; ?>
 <?php require_once "banco-categoria.php";
 require_once "logica-usuario.php";
-require_once "class/Categoria.php";
-require_once "class/Produto.php";
 if(verificaUsuario()){
 	header("Location: index.php");
 }
 $categoria = new Categoria();
 $categoria->setId(1);
-$produto = new Produto("","",$categoria,"","");
+$produto = new LivroFisico("","",$categoria,"","");
 $categorias = listaCategorias($conexao);
 ?> 
 

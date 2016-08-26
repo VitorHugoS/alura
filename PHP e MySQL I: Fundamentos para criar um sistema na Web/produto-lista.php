@@ -12,8 +12,11 @@ require_once "logica-usuario.php";
 		<td><?=$produto->getNome()?></td>
 		<td><?=$produto->getPreco()?></td>
 		<td><?=$produto->precoComDesconto(0.1)?></td>
+		<td><?=$produto->calculaImposto()?></td>
 		<td><?=substr($produto->getDescricao(),0,40)?></td>
 		<td><?=$produto->getCategoria()->getNome()?></td>
+		<?=$produto->temIsbn()?"<td>ISBN: {$produto->getIsbn()}</td>":"<td></td>"?>
+
 		<td><a class="btn btn-primary" href="produto-altera-formulario.php?id=<?=$produto->getId()?>">alterar</a></td>
 		<td>
 		<form action="remove-produto.php" method="post">

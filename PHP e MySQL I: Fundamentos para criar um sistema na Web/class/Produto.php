@@ -1,6 +1,6 @@
 <?php
 
-class Produto{
+abstract class Produto{
 	
 	private $id;
 	private $nome;
@@ -17,14 +17,14 @@ class Produto{
 		$this->descricao= $descricao;
 	}
 
-	function __destruct(){
-		//echo "Destruindo o produto". $this->getNome();
-	}
-
 	function __toString() {
 		return $this->nome. "R$ ".$this->preco;
 	}
 
+	public function temIsbn(){
+		return $this instanceof Livro;
+	}
+	
 	public function precoComDesconto($valor = 0.1){
 		if($valor >= 0.1 && $valor <= 0.5){
 			$this->preco -= $this->preco * $valor;
@@ -33,6 +33,20 @@ class Produto{
 			return $this->preco;
 		}
 		
+	}
+
+	abstract function atualizaBaseadoem($param);
+
+	public function temWaterMark(){
+		return $this instanceof Ebook;
+	}
+
+	public function temTaxaImpressao(){
+		return $this instanceof LivroFisico;
+	}
+
+	public function calculaImposto(){
+		return $this->preco * 0.195;
 	}
 
 	//geters

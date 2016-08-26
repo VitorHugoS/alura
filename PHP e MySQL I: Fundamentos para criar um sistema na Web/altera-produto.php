@@ -7,14 +7,23 @@ require_once "class/Categoria.php";
 
 $ProdutoDAO = new ProdutoDAO($conexao);
 $categoria = new Categoria();
-$categoria->setId($_POST["categoria_id"]);
-if(array_key_exists("usado", $_POST)):
-	$usado = "true";
+
+if(array_key_exists("tipoProduto", $_POST)):
+	$tipoProduto = $_POST["tipoProduto"];
 else:
-	$usado = "false";
+	$tipoProduto = "Produto";
 endif;
 
-$produto = new Produto($_POST["nome"], $_POST["preco"], $categoria, $usado, $_POST["descricao"]);
+$factory = new ProdutoFactory();
+$produto = $factory->criaProduto($tipoProduto, $_POST);
+$produto->atualizaBaseadoem($_POST);
+$produto->getCategoria()->setId($_POST["categoria_id"]);
+$produto->setId($_POST["id"]);
+if(array_key_exists("usado", $_POST)){
+	$produto->setUsado("true");
+}else{
+	$produto->setUsado("false");
+}
 
 if($ProdutoDAO->alteraProduto($produto)){
 ?>
